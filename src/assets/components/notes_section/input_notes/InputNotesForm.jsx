@@ -1,4 +1,3 @@
-import SectionTitle from "../SectionTitle";
 import {
   Input,
   Textarea,
@@ -7,12 +6,13 @@ import {
   Checkbox,
   Button,
 } from "@nextui-org/react";
-import { selThemes } from "./data";
+import { selThemes } from "../../../utils/noteTheme";
+import InputNotesTitle from "./InputNotesTitle";
 
 function InputNotesFrom() {
   return (
-    <div className="grid gap-4 col-span-1 p-6 bg-background rounded-large">
-      <SectionTitle title="Input Notes" />
+    <div className="grid gap-4 p-6 bg-background rounded-large">
+      <InputNotesTitle title="Input Notes" />
       <form className="flex flex-col space-y-4">
         <Input type="text" label="Note Title" />
         <Textarea label="Fill note ..." minRows={10} />
