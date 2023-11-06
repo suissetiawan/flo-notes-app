@@ -1,7 +1,10 @@
+import NavbarApp from "./components/navbar/NavbarApp";
+import SectionsApp from "./components/sections/SectionsApp";
 export default function App() {
   return (
-    <div className="">
-      <h1 className="text-3xl font-bold">Hello world!</h1>
+    <div className="grid gap-4">
+      <NavbarApp />
+      <SectionsApp />
     </div>
   );
 }
