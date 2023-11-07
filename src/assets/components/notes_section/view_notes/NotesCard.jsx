@@ -1,5 +1,6 @@
 import { Card, CardHeader, CardBody, Divider, Button } from "@nextui-org/react";
 import { DeleteIcon, ArchivedIcon, PostIcon } from "../../../icons/MyIcon";
+import { showFormattedDate } from "../../../utils/noteData";
 
 function NotesCard({ id, title, body, createdAt, archived, noteTheme }) {
   const actionButton = (isArchived) => {
@@ -29,7 +30,9 @@ function NotesCard({ id, title, body, createdAt, archived, noteTheme }) {
       <CardHeader className="flex justify-between gap-2">
         <div className="flex flex-col">
           <p className="text-md">{title}</p>
-          <p className="text-small text-default-500">{createdAt}</p>
+          <p className="text-small text-default-500">
+            {showFormattedDate(createdAt)}
+          </p>
         </div>
         <div className="flex gap-2">
           {actionButton(archived)}

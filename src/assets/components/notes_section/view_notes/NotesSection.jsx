@@ -1,11 +1,10 @@
 import NotesTabList from "./NotesTabList";
-import { getInitialData } from "../../../utils/noteData";
 
-function NotesSection() {
+function NotesSection({ noteData }) {
   const notes = [];
   const archived = [];
 
-  for (const val of getInitialData()) {
+  for (const val of noteData) {
     if (!val.archived) {
       notes.push(val);
     } else archived.push(val);
