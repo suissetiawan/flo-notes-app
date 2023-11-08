@@ -3,6 +3,9 @@ import NotesTabList from "./NotesTabList";
 function NotesSection({ noteData }) {
   const notes = [];
   const archived = [];
+  noteData.sort((a, b) => {
+    if (a.id > b.id) return -1;
+  });
 
   for (const val of noteData) {
     if (!val.archived) {
