@@ -9,6 +9,8 @@ function NotesCard({
   createdAt,
   archived,
   noteTheme,
+  onPost,
+  onArchive,
   onDelete,
 }) {
   const actionButton = (isArchived) => {
@@ -16,6 +18,7 @@ function NotesCard({
       return (
         <Button
           isIconOnly
+          onClick={() => onPost(id)}
           color="success"
           variant="flat"
           aria-label="Post Note">
@@ -26,6 +29,7 @@ function NotesCard({
       return (
         <Button
           isIconOnly
+          onClick={() => onArchive(id)}
           color="warning"
           variant="flat"
           aria-label="Add to archived">

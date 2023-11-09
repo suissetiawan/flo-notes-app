@@ -11,6 +11,8 @@ class App extends React.Component {
     };
 
     this.onaddNotesEventHandler = this.onaddNotesEventHandler.bind(this);
+    this.onPostNotesEventHandler = this.onPostNotesEventHandler.bind(this);
+    this.onArchivedEventHandler = this.onArchivedEventHandler.bind(this);
     this.onDeleteNotesEventHandler = this.onDeleteNotesEventHandler.bind(this);
   }
 
@@ -32,6 +34,28 @@ class App extends React.Component {
     });
   }
 
+  onPostNotesEventHandler(id) {
+    const changeToPostData = this.state.datas.map((data) => {
+      if (data.id === id) {
+        return { ...data, archived: false };
+      }
+      return data;
+    });
+
+    this.setState({ datas: changeToPostData });
+  }
+
+  onArchivedEventHandler(id) {
+    const changeToArchiveData = this.state.datas.map((data) => {
+      if (data.id === id) {
+        return { ...data, archived: true };
+      }
+      return data;
+    });
+
+    this.setState({ datas: changeToArchiveData });
+  }
+
   onDeleteNotesEventHandler(id) {
     const notes = this.state.datas.filter((data) => data.id !== id);
     this.setState({ datas: notes });
@@ -44,6 +68,8 @@ class App extends React.Component {
         <SectionsApp
           notesData={this.state.datas}
           inputHandler={this.onaddNotesEventHandler}
+          onPost={this.onPostNotesEventHandler}
+          onArchive={this.onArchivedEventHandler}
           onDelete={this.onDeleteNotesEventHandler}
         />
       </div>
