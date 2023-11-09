@@ -8,12 +8,17 @@ class App extends React.Component {
     super(props);
     this.state = {
       datas: getInitialData(),
+      events: {
+        isSearch: false,
+      },
     };
 
     this.onaddNotesEventHandler = this.onaddNotesEventHandler.bind(this);
     this.onPostNotesEventHandler = this.onPostNotesEventHandler.bind(this);
     this.onArchivedEventHandler = this.onArchivedEventHandler.bind(this);
     this.onDeleteNotesEventHandler = this.onDeleteNotesEventHandler.bind(this);
+    this.onSearchEventHandler = this.onSearchEventHandler.bind(this);
+    this.onResultSearchHandler = this.onResultSearchHandler.bind(this);
   }
 
   onaddNotesEventHandler({ title, body, noteTheme, archived }) {
@@ -61,16 +66,34 @@ class App extends React.Component {
     this.setState({ datas: notes });
   }
 
+  onSearchEventHandler() {
+    this.setState({
+      events: {
+        isSearch: true,
+      },
+    });
+  }
+
+  onResultSearchHandler() {
+    this.setState({
+      events: {
+        isSearch: false,
+      },
+    });
+  }
+
   render() {
     return (
       <div className="grid gap-4">
-        <NavbarApp />
+        <NavbarApp onSearch={this.onSearchEventHandler} />
         <SectionsApp
           notesData={this.state.datas}
           inputHandler={this.onaddNotesEventHandler}
           onPost={this.onPostNotesEventHandler}
           onArchive={this.onArchivedEventHandler}
           onDelete={this.onDeleteNotesEventHandler}
+          isSearch={this.state.events.isSearch}
+          onClose={this.onResultSearchHandler}
         />
       </div>
     );

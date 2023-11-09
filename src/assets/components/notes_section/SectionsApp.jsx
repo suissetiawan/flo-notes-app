@@ -6,9 +6,11 @@ export default function SectionsApp({
   onPost,
   onArchive,
   onDelete,
+  isSearch,
+  onClose,
 }) {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 px-4 pb-4">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 px-4 pb-10">
       <div className="col-span-1">
         <InputNotesFrom addNewNotes={inputHandler} />
       </div>
@@ -18,6 +20,8 @@ export default function SectionsApp({
           onPost={onPost}
           onArchive={onArchive}
           onDelete={onDelete}
+          isSearch={isSearch}
+          onClose={onClose}
         />
       </div>
     </div>
