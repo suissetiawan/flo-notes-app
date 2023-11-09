@@ -1,4 +1,11 @@
-import { Card, CardHeader, CardBody, Divider, Button } from "@nextui-org/react";
+import {
+  Card,
+  CardHeader,
+  CardBody,
+  Divider,
+  Button,
+  Tooltip,
+} from "@nextui-org/react";
 import { DeleteIcon, ArchivedIcon, PostIcon } from "../../../icons/MyIcon";
 import { showFormattedDate } from "../../../utils/noteData";
 
@@ -16,25 +23,29 @@ function NotesCard({
   const actionButton = (isArchived) => {
     if (isArchived)
       return (
-        <Button
-          isIconOnly
-          onClick={() => onPost(id)}
-          color="success"
-          variant="flat"
-          aria-label="Post Note">
-          <PostIcon />
-        </Button>
+        <Tooltip content="Move to Notes">
+          <Button
+            isIconOnly
+            onClick={() => onPost(id)}
+            color="success"
+            variant="flat"
+            aria-label="Post Note">
+            <PostIcon />
+          </Button>
+        </Tooltip>
       );
     else
       return (
-        <Button
-          isIconOnly
-          onClick={() => onArchive(id)}
-          color="warning"
-          variant="flat"
-          aria-label="Add to archived">
-          <ArchivedIcon />
-        </Button>
+        <Tooltip content="Move to Archived">
+          <Button
+            isIconOnly
+            onClick={() => onArchive(id)}
+            color="warning"
+            variant="flat"
+            aria-label="Add to archived">
+            <ArchivedIcon />
+          </Button>
+        </Tooltip>
       );
   };
 
@@ -49,14 +60,16 @@ function NotesCard({
         </div>
         <div className="flex gap-2">
           {actionButton(archived)}
-          <Button
-            isIconOnly
-            onClick={() => onDelete(id)}
-            color="danger"
-            variant="flat"
-            aria-label="Delete note">
-            <DeleteIcon />
-          </Button>
+          <Tooltip content="Delete :(">
+            <Button
+              isIconOnly
+              onClick={() => onDelete(id)}
+              color="danger"
+              variant="flat"
+              aria-label="Delete note">
+              <DeleteIcon />
+            </Button>
+          </Tooltip>
         </div>
       </CardHeader>
       <Divider />
