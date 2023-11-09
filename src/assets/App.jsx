@@ -11,6 +11,7 @@ class App extends React.Component {
     };
 
     this.onaddNotesEventHandler = this.onaddNotesEventHandler.bind(this);
+    this.onDeleteNotesEventHandler = this.onDeleteNotesEventHandler.bind(this);
   }
 
   onaddNotesEventHandler({ title, body, noteTheme, archived }) {
@@ -31,6 +32,11 @@ class App extends React.Component {
     });
   }
 
+  onDeleteNotesEventHandler(id) {
+    const notes = this.state.datas.filter((data) => data.id !== id);
+    this.setState({ datas: notes });
+  }
+
   render() {
     return (
       <div className="grid gap-4">
@@ -38,6 +44,7 @@ class App extends React.Component {
         <SectionsApp
           notesData={this.state.datas}
           inputHandler={this.onaddNotesEventHandler}
+          onDelete={this.onDeleteNotesEventHandler}
         />
       </div>
     );

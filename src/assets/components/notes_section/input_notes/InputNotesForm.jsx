@@ -18,6 +18,10 @@ class InputNotesForm extends React.Component {
       body: "",
       noteTheme: "bg-fuchsia-800",
       archived: "",
+      interaction: {
+        isShow: "hidden md:inline-block",
+        colInput: 10,
+      },
     };
 
     this.onTitleChangeHandler = this.onTitleChangeHandler.bind(this);
@@ -25,6 +29,8 @@ class InputNotesForm extends React.Component {
     this.onNoteThemeChangeHandler = this.onNoteThemeChangeHandler.bind(this);
     this.onArchivedChangeHandler = this.onArchivedChangeHandler.bind(this);
     this.onSubmitEventHandler = this.onSubmitEventHandler.bind(this);
+    this.onFokusHandler = this.onFokusHandler.bind(this);
+    this.onBlurHandler = this.onBlurHandler.bind(this);
   }
 
   onTitleChangeHandler(e) {
@@ -72,8 +78,31 @@ class InputNotesForm extends React.Component {
     });
   }
 
+  onFokusHandler() {
+    this.setState(() => {
+      return {
+        interaction: {
+          isShow: "md:inline-block",
+          colInput: 10,
+        },
+      };
+    });
+  }
+
+  onBlurHandler() {
+    this.setState(() => {
+      return {
+        interaction: {
+          isShow: "hidden md:inline-block",
+          colInput: 10,
+        },
+      };
+    });
+  }
+
   render() {
     const maxChar = 50;
+    const isShowEl = this.state.interaction.isShow;
     return (
       <div className="grid gap-4 p-6 bg-background rounded-large">
         <InputNotesTitle title="Input Notes" />
@@ -84,6 +113,7 @@ class InputNotesForm extends React.Component {
             Remaining Character : {maxChar - this.state.title.length}
           </p>
           <Input
+            // className={isShowEl}
             type="text"
             label="Note Title"
             value={this.state.title}
@@ -91,10 +121,12 @@ class InputNotesForm extends React.Component {
             onChange={this.onTitleChangeHandler}
           />
           <Textarea
-            label="Fill note ..."
-            minRows={10}
+            label="Make note..."
+            minRows={this.state.interaction.colInput}
             value={this.state.body}
             onChange={this.onBodyChangeHandler}
+            onFocus={this.onFokusHandler}
+            onBlur={this.onBlurHandler}
           />
           <div className="grid grid-cols-2 gap-4 items-stretch">
             <Select
