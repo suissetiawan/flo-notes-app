@@ -90,14 +90,16 @@ class InputNotesForm extends React.Component {
   }
 
   onBlurHandler() {
-    this.setState(() => {
-      return {
-        interaction: {
-          isShow: "hidden md:inline-block",
-          colInput: 10,
-        },
-      };
-    });
+    setTimeout(() => {
+      this.setState(() => {
+        return {
+          interaction: {
+            isShow: "hidden md:inline-block",
+            colInput: 10,
+          },
+        };
+      });
+    }, 2000);
   }
 
   render() {
@@ -109,17 +111,20 @@ class InputNotesForm extends React.Component {
         <form
           className="flex flex-col space-y-4"
           onSubmit={this.onSubmitEventHandler}>
-          <p className="text-sm text-end">
-            Remaining Character : {maxChar - this.state.title.length}
-          </p>
-          <Input
-            // className={isShowEl}
-            type="text"
-            label="Note Title"
-            value={this.state.title}
-            maxLength={maxChar}
-            onChange={this.onTitleChangeHandler}
-          />
+          <div className={isShowEl + " space-y-2"}>
+            <p className="text-sm text-end">
+              Remaining Character : {maxChar - this.state.title.length}
+            </p>
+            <Input
+              type="text"
+              label="Note Title"
+              value={this.state.title}
+              maxLength={maxChar}
+              onChange={this.onTitleChangeHandler}
+              onFocus={this.onFokusHandler}
+              onBlur={this.onBlurHandler}
+            />
+          </div>
           <Textarea
             label="Make note..."
             minRows={this.state.interaction.colInput}

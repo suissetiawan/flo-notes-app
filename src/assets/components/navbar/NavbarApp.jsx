@@ -2,7 +2,7 @@ import { Navbar } from "@nextui-org/react";
 import NavbarLogo from "./NavbarLogo";
 import NavbarSeach from "./NavbarSearch";
 
-export default function NavbarApp({ onSearch }) {
+export default function NavbarApp({ onSearch, onGetSearch }) {
   return (
     <Navbar isBordered className="w-screen" maxWidth="full" height="5rem">
       <div className="flex justify-between w-full">
@@ -10,7 +10,7 @@ export default function NavbarApp({ onSearch }) {
           <NavbarLogo />
         </div>
         <div className="w-[55%] md:w-[50%] ">
-          <NavbarSeach onSearch={onSearch} />
+          <NavbarSeach onSearch={onSearch} onGetSearch={onGetSearch} />
         </div>
       </div>
     </Navbar>

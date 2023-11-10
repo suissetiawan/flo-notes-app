@@ -3,6 +3,7 @@ import NotesSearchResult from "./NotesSearchResult";
 
 function NotesSection({
   noteData,
+  eventValue,
   onPost,
   onArchive,
   onDelete,
@@ -27,6 +28,7 @@ function NotesSection({
       <NotesSearchResult
         notes={notes}
         archived={archived}
+        eventValue={eventValue}
         onPost={onPost}
         onArchive={onArchive}
         onDelete={onDelete}

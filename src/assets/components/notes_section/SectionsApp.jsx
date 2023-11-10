@@ -2,6 +2,7 @@ import InputNotesFrom from "./input_notes/InputNotesForm";
 import NotesSection from "./view_notes/NotesSection";
 export default function SectionsApp({
   notesData,
+  eventValue,
   inputHandler,
   onPost,
   onArchive,
@@ -17,6 +18,7 @@ export default function SectionsApp({
       <div className="col-span-2">
         <NotesSection
           noteData={notesData}
+          eventValue={eventValue}
           onPost={onPost}
           onArchive={onArchive}
           onDelete={onDelete}

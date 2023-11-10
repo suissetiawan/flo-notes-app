@@ -1,11 +1,12 @@
 import { NavbarContent, Input } from "@nextui-org/react";
 import { SearchIcon } from "../../icons/MyIcon";
 
-function NavbarSearch({ onSearch }) {
+function NavbarSearch({ onSearch, onGetSearch }) {
   return (
     <NavbarContent as="div" justify="end">
       <Input
-        onKeyUp={() => onSearch()}
+        onFocus={() => onSearch()}
+        onChange={(e) => onGetSearch(e.target.value)}
         placeholder="Search notes..."
         startContent={<SearchIcon size={18} />}
         type="search"

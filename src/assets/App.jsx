@@ -10,31 +10,42 @@ class App extends React.Component {
       datas: getInitialData(),
       events: {
         isSearch: false,
+        searchValue: "",
       },
     };
 
-    this.onaddNotesEventHandler = this.onaddNotesEventHandler.bind(this);
-    this.onPostNotesEventHandler = this.onPostNotesEventHandler.bind(this);
-    this.onArchivedEventHandler = this.onArchivedEventHandler.bind(this);
-    this.onDeleteNotesEventHandler = this.onDeleteNotesEventHandler.bind(this);
-    this.onSearchEventHandler = this.onSearchEventHandler.bind(this);
-    this.onResultSearchHandler = this.onResultSearchHandler.bind(this);
+    this.bindEventHandlers();
+  }
+
+  bindEventHandlers() {
+    this.eventHandlers = [
+      "onaddNotesEventHandler",
+      "onPostNotesEventHandler",
+      "onArchivedEventHandler",
+      "onDeleteNotesEventHandler",
+      "onSearchEventHandler",
+      "onGetSearchValueHandler",
+      "onResultSearchHandler",
+    ];
+
+    this.eventHandlers.forEach((handler) => {
+      this[handler] = this[handler].bind(this);
+    });
   }
 
   onaddNotesEventHandler({ title, body, noteTheme, archived }) {
+    const newNote = {
+      id: +new Date(),
+      title,
+      body,
+      noteTheme,
+      createdAt: new Date().toISOString(),
+      archived,
+    };
+
     this.setState((prevState) => {
       return {
-        datas: [
-          ...prevState.datas,
-          {
-            id: +new Date(),
-            title,
-            body,
-            noteTheme,
-            createdAt: new Date().toISOString(),
-            archived,
-          },
-        ],
+        datas: [...prevState.datas, newNote],
       };
     });
   }
@@ -82,12 +93,25 @@ class App extends React.Component {
     });
   }
 
+  onGetSearchValueHandler(value) {
+    this.setState((prevState) => ({
+      events: {
+        ...prevState.events,
+        searchValue: value,
+      },
+    }));
+  }
+
   render() {
     return (
       <div className="grid gap-4">
-        <NavbarApp onSearch={this.onSearchEventHandler} />
+        <NavbarApp
+          onSearch={this.onSearchEventHandler}
+          onGetSearch={this.onGetSearchValueHandler}
+        />
         <SectionsApp
           notesData={this.state.datas}
+          eventValue={this.state.events.searchValue}
           inputHandler={this.onaddNotesEventHandler}
           onPost={this.onPostNotesEventHandler}
           onArchive={this.onArchivedEventHandler}
