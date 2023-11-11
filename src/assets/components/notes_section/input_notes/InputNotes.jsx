@@ -115,7 +115,7 @@ class InputNotes extends React.Component {
           <>
             <Input
               className={hideEl}
-              placeholder="Make Notes..."
+              placeholder="Make a note..."
               endContent={<WriteNotes />}
               type="search"
               variant="bordered"
