@@ -42,6 +42,7 @@ class App extends React.Component {
       createdAt: new Date().toISOString(),
       archived,
     };
+    console.log(newNote);
 
     this.setState((prevState) => {
       return {

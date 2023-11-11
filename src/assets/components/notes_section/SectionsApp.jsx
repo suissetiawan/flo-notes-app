@@ -1,4 +1,4 @@
-import InputNotesFrom from "./input_notes/InputNotesForm";
+import InputNotes from "./input_notes/InputNotes";
 import NotesSection from "./view_notes/NotesSection";
 export default function SectionsApp({
   notesData,
@@ -11,9 +11,9 @@ export default function SectionsApp({
   onClose,
 }) {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 px-4 pb-10">
-      <div className="col-span-1">
-        <InputNotesFrom addNewNotes={inputHandler} />
+    <div className="grid grid-cols-1 md:grid-cols-3 md:space-x-4 px-4 pb-10">
+      <div className="col-span-1 mb-4 md:mb-0">
+        <InputNotes addNewNotes={inputHandler} />
       </div>
       <div className="col-span-2">
         <NotesSection

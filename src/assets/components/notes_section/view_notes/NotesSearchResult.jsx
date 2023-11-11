@@ -1,7 +1,5 @@
 import NotesList from "./NotesList";
 import EmptyState from "./EmptyState";
-import { Button } from "@nextui-org/react";
-import { CloseIcon } from "../../../icons/MyIcon";
 import InputNotesTitle from "../input_notes/InputNotesTitle";
 
 function NotesSearchResult({
@@ -28,18 +26,11 @@ function NotesSearchResult({
 
   return (
     <div className={onSearch + " flex-col gap-4 p-1"}>
-      <div className="flex flex-row justify-between">
-        <InputNotesTitle title="Notes Result" />
-        <Button
-          onClick={() => onClose()}
-          size="sm"
-          color="danger"
-          variant="light"
-          aria-label="Post Note">
-          <CloseIcon />
-          CLOSE
-        </Button>
-      </div>
+      <InputNotesTitle
+        title="Notes Result"
+        onClose={onClose}
+        isHideButton={false}
+      />
       {[...filterNotes, ...filterArchived].length !== 0 ? (
         <>
           <NotesList

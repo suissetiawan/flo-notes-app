@@ -8,7 +8,7 @@ function NavbarSearch({ onSearch, onGetSearch }) {
         onFocus={() => onSearch()}
         onChange={(e) => onGetSearch(e.target.value)}
         placeholder="Search notes..."
-        startContent={<SearchIcon size={18} />}
+        startContent={<SearchIcon />}
         type="search"
       />
     </NavbarContent>
