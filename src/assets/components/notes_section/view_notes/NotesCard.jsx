@@ -8,6 +8,7 @@ import {
 } from "@nextui-org/react";
 import { DeleteIcon, ArchivedIcon, PostIcon } from "../../../icons/MyIcon";
 import { showFormattedDate } from "../../../utils/noteData";
+import FadeIn from "../../../animations/FadeIn";
 
 function NotesCard({
   id,
@@ -50,33 +51,35 @@ function NotesCard({
   };
 
   return (
-    <Card key={id} className={noteTheme}>
-      <CardHeader className="flex justify-between gap-2">
-        <div className="flex flex-col">
-          <p className="text-md">{title}</p>
-          <p className="text-small text-default-500">
-            {showFormattedDate(createdAt)}
-          </p>
-        </div>
-        <div className="flex gap-2">
-          {actionButton(archived)}
-          <Tooltip content="Delete :(">
-            <Button
-              isIconOnly
-              onClick={() => onDelete(id)}
-              color="danger"
-              variant="flat"
-              aria-label="Delete note">
-              <DeleteIcon />
-            </Button>
-          </Tooltip>
-        </div>
-      </CardHeader>
-      <Divider />
-      <CardBody>
-        <p>{body}</p>
-      </CardBody>
-    </Card>
+    <FadeIn>
+      <Card key={id} className={noteTheme}>
+        <CardHeader className="flex justify-between gap-2">
+          <div className="flex flex-col">
+            <p className="text-md">{title}</p>
+            <p className="text-small text-default-500">
+              {showFormattedDate(createdAt)}
+            </p>
+          </div>
+          <div className="flex gap-2">
+            {actionButton(archived)}
+            <Tooltip content="Delete :(">
+              <Button
+                isIconOnly
+                onClick={() => onDelete(id)}
+                color="danger"
+                variant="flat"
+                aria-label="Delete note">
+                <DeleteIcon />
+              </Button>
+            </Tooltip>
+          </div>
+        </CardHeader>
+        <Divider />
+        <CardBody>
+          <p>{body}</p>
+        </CardBody>
+      </Card>
+    </FadeIn>
   );
 }
 
